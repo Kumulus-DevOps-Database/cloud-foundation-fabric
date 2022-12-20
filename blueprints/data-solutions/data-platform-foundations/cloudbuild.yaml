@@ -25,4 +25,4 @@ steps:
   - | 
       cd ./blueprints/data-solutions/data-platform-foundations/
       echo "run terraform apply"
-      terraform apply
+      terraform apply "data-platform-foundations.plan"
