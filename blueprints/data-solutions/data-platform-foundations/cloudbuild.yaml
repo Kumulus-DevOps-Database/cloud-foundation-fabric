@@ -5,14 +5,15 @@ steps:
   args: 
   - '-c'
   - |
+      cd ./blueprints/data-solutions/data-platform-foundations/
       echo "run terraform init"
       terraform init
-
 - id: 'tf plan'
   name: 'hashicorp/terraform:1.3.6'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
+      cd ./blueprints/data-solutions/data-platform-foundations/
       echo "run terraform plan"
-      terraform plan -var-file .\terraform.tfvars -out data-platform-foundations.plan
+      terraform plan -var-file \terraform.tfvars -out data-platform-foundations.plan
