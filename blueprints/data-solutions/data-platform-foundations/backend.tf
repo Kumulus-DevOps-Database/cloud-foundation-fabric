@@ -18,7 +18,7 @@
 terraform {
   backend "gcs" {
     bucket                      = "tfstate-datafoundation"
-    prefix                      = "dpe"
+    prefix                      = "teste"
     # impersonate_service_account = "terraform-automation@projeto-gcp-20221108-102-937.iam.gserviceaccount.com"
   }
 }
