@@ -17,7 +17,7 @@ steps:
   args: 
   - '-c'
   - |
-      cd .\\blueprints\\data-solutions\\data-platform-foundations
+      cd blueprints\\data-solutions\\data-platform-foundations
       echo ""
       echo "*************** TERRAFORM INIT ******************"
       echo "*************************************************"
@@ -31,7 +31,7 @@ steps:
   args: 
   - '-c'
   - |
-      cd .\\blueprints\\data-solutions\\data-platform-foundations
+      cd blueprints\\data-solutions\\data-platform-foundations
       echo ""
       echo "*************** TERRAFOM PLAN ******************"
       echo "*************************************************"
@@ -48,7 +48,7 @@ steps:
 #   args: 
 #   - '-c'
 #   - |
-#        cd .\\blueprints\\data-solutions\\data-platform-foundations
+#        cd blueprints\\data-solutions\\data-platform-foundations
 #       echo ""
 #       echo "*************** TERRAFOM APPLY ******************"
 #       echo "*************************************************"
