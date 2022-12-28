@@ -59,14 +59,14 @@ steps:
         -var="organization_domain=$_ORGANIZATION_DOMAIN" \
         -out edu-dev.tfplan || exit 1
 
-# - id: 'tf apply'
-#   name: 'hashicorp/terraform:1.3.6'
-#   entrypoint: 'sh'
-#   args: 
-#   - '-c'
-#   - |
-#        cd blueprints\\data-solutions\\data-platform-foundations
-#       echo ""
-#       echo "*************** TERRAFOM APPLY ******************"
-#       echo "*************************************************"
-#       terraform apply edu.dev.tfplan
+- id: 'tf apply'
+  name: 'hashicorp/terraform:1.3.6'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - |
+       cd blueprints\\data-solutions\\data-platform-foundations
+      echo ""
+      echo "*************** TERRAFOM APPLY ******************"
+      echo "*************************************************"
+      terraform apply edu.dev.tfplan
