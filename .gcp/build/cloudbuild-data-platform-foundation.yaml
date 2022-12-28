@@ -20,6 +20,19 @@ steps:
       cd blueprints
       cd data-solutions
       cd data-platform-foundations
+      cat << EOF > backend.tf
+      terraform {
+        backend "gcs" {
+        }
+      }
+      provider "google" {
+
+      }
+      provider "google-beta" {
+
+      }
+      EOF
+
       echo ""
       echo "*************** TERRAFORM INIT ******************"
       echo "*************************************************"
@@ -33,7 +46,9 @@ steps:
   args: 
   - '-c'
   - |
-      cd blueprints\\data-solutions\\data-platform-foundations
+      cd blueprints
+      cd data-solutions
+      cd data-platform-foundations
       echo ""
       echo "*************** TERRAFOM PLAN ******************"
       echo "*************************************************"
