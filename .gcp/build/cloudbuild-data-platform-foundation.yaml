@@ -16,7 +16,7 @@ steps:
   args: 
   - '-c'
   - |
-      cd .\blueprints\data-solutions\data-platform-foundations
+      cd .\\blueprints\\data-solutions\\data-platform-foundations
       echo ""
       echo "*************** TERRAFORM INIT ******************"
       echo "*************************************************"
@@ -24,13 +24,13 @@ steps:
         -backend-config="bucket=${_BUCKET}" \
         -backend-config="prefix=${_PREFIX}"
 
-- id: 'tf plan dev'
+- id: 'tf plan'
   name: 'hashicorp/terraform:1.3.6'
   entrypoint: 'sh'
   args: 
   - '-c'
   - |
-      cd .\blueprints\data-solutions\data-platform-foundations
+      cd .\\blueprints\\data-solutions\\data-platform-foundations
       echo ""
       echo "*************** TERRAFOM PLAN ******************"
       echo "*************************************************"
@@ -47,7 +47,7 @@ steps:
 #   args: 
 #   - '-c'
 #   - |
-#        cd .\blueprints\data-solutions\data-platform-foundations
+#        cd .\\blueprints\\data-solutions\\data-platform-foundations
 #       echo ""
 #       echo "*************** TERRAFOM APPLY ******************"
 #       echo "*************************************************"
