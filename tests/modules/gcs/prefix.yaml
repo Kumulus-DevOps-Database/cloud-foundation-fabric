@@ -12,14 +12,33 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ingress:
-  allow-healthchecks:
-    description: Allow ingress from healthchecks.
-    ranges:
-      - healthchecks
-    targets: ["lb-backends"]
-    rules:
-      - protocol: tcp
-        ports:
-          - 80
-          - 443
+values:
+  google_storage_bucket.bucket:
+    force_destroy: true
+    labels:
+      environment: test
+    location: EU
+    logging:
+      - log_bucket: foo
+    name: foo-test
+    project: test-project
+    retention_policy:
+      - is_locked: false
+        retention_period: 5
+    storage_class: MULTI_REGIONAL
+    uniform_bucket_level_access: true
+    versioning:
+      - enabled: true
+
+counts:
+  google_storage_bucket: 1
+  modules: 0
+  resources: 1
+
+outputs:
+  bucket: __missing__
+  id: foo-test
+  name: foo-test
+  notification: null
+  topic: null
+  url: __missing__

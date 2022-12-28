@@ -29,12 +29,12 @@ locals {
           deny                 = try(rule.deny, false)
           rules                = try(rule.rules, [{ protocol = "all" }])
           description          = try(rule.description, null)
-          destination_ranges   = try(rule.ranges, null)
+          destination_ranges   = try(rule.destination_ranges, null)
           direction            = upper(direction)
           disabled             = try(rule.disabled, null)
           enable_logging       = try(rule.enable_logging, null)
           priority             = try(rule.priority, 1000)
-          source_ranges        = try(rule.ranges, null)
+          source_ranges        = try(rule.source_ranges, null)
           sources              = try(rule.sources, null)
           targets              = try(rule.targets, null)
           use_service_accounts = try(rule.use_service_accounts, false)
@@ -66,15 +66,23 @@ locals {
     for name, rule in local._rules :
     name => merge(rule, {
       action = rule.deny == true ? "DENY" : "ALLOW"
-      destination_ranges = flatten([
-        for range in coalesce(try(rule.destination_ranges, null), []) :
-        try(local._named_ranges[range], range)
-      ])
+      destination_ranges = (
+        try(rule.destination_ranges, null) == null
+        ? null
+        : flatten([
+          for range in rule.destination_ranges :
+          try(local._named_ranges[range], range)
+        ])
+      )
       rules = { for k, v in rule.rules : k => v }
-      source_ranges = flatten([
-        for range in coalesce(try(rule.source_ranges, null), []) :
-        try(local._named_ranges[range], range)
-      ])
+      source_ranges = (
+        try(rule.source_ranges, null) == null
+        ? null
+        : flatten([
+          for range in rule.source_ranges :
+          try(local._named_ranges[range], range)
+        ])
+      )
     })
   }
 }
@@ -89,18 +97,20 @@ resource "google_compute_firewall" "custom-rules" {
   source_ranges = (
     each.value.direction == "INGRESS"
     ? (
-      coalesce(each.value.source_ranges, []) == []
+      each.value.source_ranges == null
       ? ["0.0.0.0/0"]
       : each.value.source_ranges
-    ) : null
+    )
+    : null
   )
   destination_ranges = (
     each.value.direction == "EGRESS"
     ? (
-      coalesce(each.value.destination_ranges, []) == []
+      each.value.destination_ranges == null
       ? ["0.0.0.0/0"]
       : each.value.destination_ranges
-    ) : null
+    )
+    : null
   )
   source_tags = (
     each.value.use_service_accounts || each.value.direction == "EGRESS"
