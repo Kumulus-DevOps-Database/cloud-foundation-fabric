@@ -168,7 +168,7 @@ module "dwh-lnd-bq-0" {
 module "dwh-cur-bq-0" {
   source         = "../../../modules/bigquery-dataset"
   project_id     = module.dwh-cur-project.project_id
-  id             = "${replace(var.prefix, "-", "_")}_dwh_lnd_bq_0"
+  id             = "${replace(var.prefix, "-", "_")}_dwh_cur_bq_0"
   location       = var.location
   encryption_key = try(local.service_encryption_keys.bq, null)
 }
