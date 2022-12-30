@@ -24,13 +24,14 @@ The Data Platform is meant to be executed by a Service Account (or a regular use
 
 ## Variable configuration
 
-There are three sets of variables you will need to fill in:
+There are three sets of variables you will need to fill in on the Trigger for Substituion on the Cloud Build:
 
 ```tfvars
-billing_account_id  = "111111-222222-333333"
-older_id            = "folders/123456789012"
-organization_domain = "domain.com"
-prefix              = "myco"
+_BILLING_ACCOUNT_ID     = "111111-222222-333333"
+_FOLDER_ID              = "folders/123456789012"
+_ORGANIZATION_DOMAIN    = "domain.com"
+_PREFIX                 = "myco"
+_BUCKET                 = "tfstate-bucket"
 ```
 
 For more fine details check variables on [`variables.tf`](../../blueprints/data-solutions/data-platform-foundations/variables.tf) and update according to the desired configuration. Remember to create team groups described [below](#groups).
